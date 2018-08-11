@@ -7,6 +7,7 @@ require "objects/power_up"
 
 local tagSound = love.audio.newSource("assets/tag.wav", "static")
 local endGameSound = love.audio.newSource("assets/endGame.wav", "static")
+local bgm = love.audio.newSource("assets/battle.ogg", "static")
 
 function game_load()
   player:set()
@@ -14,6 +15,8 @@ function game_load()
   timer = 30
   puTimer = love.math.random(6,8)
   border = 10
+
+  bgm:play()
 end
 
 function game_update(dt)
