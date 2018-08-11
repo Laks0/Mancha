@@ -16,6 +16,10 @@ function game_load()
   puTimer = love.math.random(6,8)
   border = 10
 
+  for i = 1, #powerUps do
+    table.remove(powerUps,1)
+  end
+
   bgm:play()
 end
 

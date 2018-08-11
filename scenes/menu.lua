@@ -2,6 +2,7 @@ local start = false
 local startTimer = 0
 
 local music = love.audio.newSource("assets/introMusic.ogg", "static")
+local mancha = love.audio.newSource("assets/mancha!.ogg", "static")
 
 function menu_load()
   music:play()
@@ -20,6 +21,7 @@ function menu_update(dt)
     startTimer = startTimer - dt
     if startTimer <= 0 then
       start = true
+      mancha:play()
     end
   end
 end
