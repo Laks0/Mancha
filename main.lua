@@ -18,6 +18,7 @@ selectSound = love.audio.newSource("assets/select.wav", "static")
 function love.load()
   render:create(3)
   scene = "menu"
+  menu_load()
 
   love.graphics.setBackgroundColor(.9,.8,.8)
 end

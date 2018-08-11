@@ -13,6 +13,7 @@ function endgame_update(dt)
     end
     if mouse_en(width/2-100,height/2-defLine/2+200,200,defLine+20) then
       scene = "menu"
+      menu_load()
       selectSound:play()
     end
   end

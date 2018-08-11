@@ -41,11 +41,7 @@ function ia:update(dt)
       self.sprint = false
     end
   else
-    if self.it then
-      self.maxSpeed = 450
-    else
-      self.maxSpeed = 350
-    end
+    self.maxSpeed = 350
   end
 
   if self.movement.x < self.maxSpeed and self.movement.x > -self.maxSpeed then

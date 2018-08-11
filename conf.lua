@@ -3,5 +3,7 @@ function love.conf(t)
   t.window.height = 720
 
   t.window.icon = "assets/Lakso8b.png"
+  t.window.title = "MANCHA!"
+
   t.window.borderless = true
 end
