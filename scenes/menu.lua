@@ -22,6 +22,7 @@ function menu_update(dt)
       if mouse_en(width/2-100,height/2-defLine/2-100,200,defLine+20) then
         start = false
         instructions = true
+        selectSound:play()
       end
     end
   elseif not instructions then
@@ -34,13 +35,16 @@ function menu_update(dt)
     if mouse_en(width/2-100,height/2-defLine/2+300,200,defLine+20) and love.mouse.isDown(1) then
       instructions = false
       start = true
+      selectSound:play()
     end
   end
 end
 
 function menu_draw()
   if start then
-    render:textf("Mancha!",0,0,"center",width,3,{.4,.1,0},bebas128)
+    render:textf("Lakso's",0,0,"center",width,3,{.4,.1,0})
+    render:textf("Mancha!",0,15,"center",width,3,{.4,.1,0},bebas128)
+    render:textf("The classic game of Tag",0,bebas128Line-10,"center",width,3,{.4,.1,0})
 
     render:rectangle("line",width/2-100,height/2-defLine/2-10,200,defLine+20,2,{0,0,0},10)
     render:rectangle("fill",width/2-100,height/2-defLine/2-10,200,defLine+20,1,{0,.6,0})
@@ -53,9 +57,9 @@ function menu_draw()
 
     render:textf("Instructions",width/2-100,height/2-defLine/2-95,"center",200,2,{.4,.1,0})
   elseif instructions then
-    render:textf("Mancha!",0,0,"center",width,3,{.4,.1,0},bebas128)
-
-    render:textf("The clasic game of Tag",0,bebas128Line-25,"center",width,3,{.4,.1,0})
+    render:textf("Lakso's",0,0,"center",width,3,{.4,.1,0})
+    render:textf("Mancha!",0,15,"center",width,3,{.4,.1,0},bebas128)
+    render:textf("The classic game of Tag",0,bebas128Line-10,"center",width,3,{.4,.1,0})
 
     render:text("You are the blue guy",20,defLine*10,2,{.4,.1,0})
     render:circle("fill",defaultFont:getWidth("You are the blue guy")+52,defLine*10.8,16,2,{0,0,.8})
@@ -63,9 +67,11 @@ function menu_draw()
     render:text("Who has the black rign is it",20,defLine*12,2,{.4,.1,0})
     render:circle("line",defaultFont:getWidth("Who has the black rign is it")+52,defLine*12.8,16,2,{0,0,0},3)
 
-    render:text("These are power ups ( Try'em! )",20,defLine*14,2,{.4,.1,0})
-    render:circle("fill",defaultFont:getWidth("These are power ups ( Try'em! )")+52,defLine*14.8,16,2,{.2,.2,.2})
-    render:circle("fill",defaultFont:getWidth("These are power ups ( Try'em! )")+52+40,defLine*14.8,16,2,{1,0,0})
+    render:text("These are power ups",20,defLine*14,2,{.4,.1,0})
+    render:circle("fill",defaultFont:getWidth("These are power ups")+52,defLine*14.8,16,2,{.2,.2,.2})
+    render:circle("fill",defaultFont:getWidth("These are power ups")+52+40,defLine*14.8,16,2,{1,0,0})
+    render:text({{.4,.1,0},"The",{.2,.2,.2}, " grey ", {.4,.1,0}, "one stones the other player for a while and the", {1,0,0}, " red ", {.4,.1,0}, "one gives you a speed boost"},
+    defaultFont:getWidth("These are power ups")+115,defLine*14,2)
 
     render:text("Use WASD to move",20,defLine*16,2,{.4,.1,0})
 
@@ -76,7 +82,7 @@ function menu_draw()
     render:rectangle("line",width/2-100,height/2-defLine/2+300,200,defLine+20,2,{0,0,0},10)
     render:rectangle("fill",width/2-100,height/2-defLine/2+300,200,defLine+20,1,{0,.6,0})
 
-    render:textf("Start Game!",width/2-100,height/2-defLine/2+305,"center",200,2,{.4,.1,0})
+    render:textf("Back",width/2-100,height/2-defLine/2+305,"center",200,2,{.4,.1,0})
   end
 end
 
