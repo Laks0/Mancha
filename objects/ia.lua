@@ -6,7 +6,7 @@ function ia:set()
   self.it = true
   self.rad = 16
   self.maxSpeed = 350
-  self.acceleration = 50
+  self.acceleration = 100
   self.movement = {
     x = 0,
     y = 0
@@ -34,7 +34,6 @@ function ia:update(dt)
 
   if self.sprint then
     self.maxSpeed = 600
-    self.acceleration = 100
 
     self.sprintTimer = self.sprintTimer - dt
     if self.sprintTimer <= 0 then
@@ -85,7 +84,7 @@ function ia:update(dt)
       self.stone = false
     end
   end
-
+  
   if self.x + 16 > field.x + field.w then self.x = field.x + field.w - 16 end
   if self.y + 16 > field.y + field.h then self.y = field.y + field.h - 16 end
   if self.x - 16 < field.x then self.x = field.x + 16 end
