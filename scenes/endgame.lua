@@ -1,7 +1,15 @@
-local win = false
+local text
 
 function endgame_load(w)
-  win = w
+  if w then
+    text = "player wins"
+  else
+    if love.math.random() <= .7 then
+      text = "player loses"
+    else
+      text = "player I II II L"
+    end
+  end
 end
 
 function endgame_update(dt)
@@ -20,10 +28,6 @@ function endgame_update(dt)
 end
 
 function endgame_draw()
-  local text = "Player Loses"
-  if win then
-    text = "Player wins"
-  end
   render:textf(text,0,height/2-bebas128Line/2,"center",width,3,{.4,.1,0},bebas128)
 
   render:rectangle("line",width/2-100,height/2-defLine/2+100,200,defLine+20,2,{0,0,0},10)

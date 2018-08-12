@@ -15,9 +15,16 @@ height = love.graphics.getHeight()
 
 selectSound = love.audio.newSource("assets/select.wav", "static")
 
+mouse_pres = false
+
+borderless = true
+
 function love.load()
   render:create(3)
   scene = "menu"
+
+  audio = true
+
   menu_load()
 
   love.graphics.setBackgroundColor(.9,.8,.8)
@@ -25,6 +32,12 @@ end
 
 function love.update(dt)
   render:clear()
+
+  if audio then
+    love.audio.setVolume(.1)
+  else
+    love.audio.setVolume(0)
+  end
 
   if scene == "game" then
     game_update(dt)
@@ -47,6 +60,8 @@ function love.draw()
   for i = 1, #render do
     render:show(i)
   end
+
+  mouse_pres = false
 end
 
 function dist(x,y,x2,y2)
@@ -62,4 +77,8 @@ function sign(n)
     return -1
   end
   return 0
+end
+
+function love.mousepressed(x, y, b, isTouch)
+  mouse_pres = b == 1
 end

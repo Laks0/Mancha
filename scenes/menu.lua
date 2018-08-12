@@ -13,7 +13,7 @@ end
 
 function menu_update(dt)
   if start then
-    if love.mouse.isDown(1) then
+    if mouse_pres then
       if mouse_en(width/2-100,height/2-defLine/2-10,200,defLine+20) then
         game_load()
         scene = "game"
@@ -24,6 +24,18 @@ function menu_update(dt)
         instructions = true
         selectSound:play()
       end
+      if mouse_en(width/2-100,height/2-defLine/2+100,200,defLine+20) then
+        audio = not audio
+        if audio then selectSound:play() end
+      end
+      if mouse_en(width/2-100,height/2-defLine/2+200,200,defLine+20) then
+        love.window.close()
+      end
+      if mouse_en(width/2-100,height/2-defLine/2+300,200,defLine+20) then
+        borderless = not borderless
+        love.window.setMode(1280, 720, {borderless = borderless})
+        selectSound:play()
+      end
     end
   elseif not instructions then
     startTimer = startTimer - dt
@@ -32,7 +44,7 @@ function menu_update(dt)
       mancha:play()
     end
   else
-    if mouse_en(width/2-100,height/2-defLine/2+300,200,defLine+20) and love.mouse.isDown(1) then
+    if mouse_en(width/2-100,height/2-defLine/2+300,200,defLine+20) and mouse_pres then
       instructions = false
       start = true
       selectSound:play()
@@ -50,6 +62,25 @@ function menu_draw()
     render:rectangle("fill",width/2-100,height/2-defLine/2-10,200,defLine+20,1,{0,.6,0})
 
     render:textf("Start Game!",width/2-100,height/2-defLine/2-5,"center",200,2,{.4,.1,0})
+
+    local audioText = "Volume on"
+    if not audio then
+      audioText = "Volume off"
+    end
+    render:rectangle("line",width/2-100,height/2-defLine/2+100,200,defLine+20,2,{0,0,0},10)
+    render:rectangle("fill",width/2-100,height/2-defLine/2+100,200,defLine+20,1,{0,.6,0})
+
+    render:textf(audioText,width/2-100,height/2-defLine/2+105,"center",200,2,{.4,.1,0})
+
+    render:rectangle("line",width/2-100,height/2-defLine/2+200,200,defLine+20,2,{0,0,0},10)
+    render:rectangle("fill",width/2-100,height/2-defLine/2+200,200,defLine+20,1,{0,.6,0})
+
+    render:textf("Exit game",width/2-100,height/2-defLine/2+205,"center",200,2,{.4,.1,0})
+
+    render:rectangle("line",width/2-100,height/2-defLine/2+300,200,defLine+20,2,{0,0,0},10)
+    render:rectangle("fill",width/2-100,height/2-defLine/2+300,200,defLine+20,1,{0,.6,0})
+
+    render:textf("Borderless on/off",width/2-100,height/2-defLine/2+305,"center",200,2,{.4,.1,0})
 
 
     render:rectangle("line",width/2-100,height/2-defLine/2-100,200,defLine+20,2,{0,0,0},10)
@@ -73,7 +104,7 @@ function menu_draw()
     render:text({{.4,.1,0},"The",{.2,.2,.2}, " grey ", {.4,.1,0}, "one stones the other player for a while and the", {1,0,0}, " red ", {.4,.1,0}, "one gives you a speed boost"},
     defaultFont:getWidth("These are power ups")+115,defLine*14,2)
 
-    render:text("Use WASD to move",20,defLine*16,2,{.4,.1,0})
+    render:text("Use WASD to move or the left stick of a joystick",20,defLine*16,2,{.4,.1,0})
 
     render:text("Try to tag the AI and don't let it tag you until the time's up",20,defLine*18,2,{.4,.1,0})
 

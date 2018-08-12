@@ -18,6 +18,14 @@ function player:set()
 end
 
 function player:update(dt)
+  joysticks = love.joystick.getJoysticks()
+  keys = {
+    left = love.keyboard.isDown("a") or joysticks[1]:getAxis(1) < -.5,
+    right = love.keyboard.isDown("d") or joysticks[1]:getAxis(1) > .5,
+    up = love.keyboard.isDown("w") or joysticks[1]:getAxis(2) < -.5,
+    down = love.keyboard.isDown("s") or joysticks[1]:getAxis(2) > .5,
+  }
+
   if self.sprint then
     self.maxSpeed = 600
     self.acceleration = 100
@@ -31,16 +39,16 @@ function player:update(dt)
     self.acceleration = 50
   end
 
-  if love.keyboard.isDown("d") and self.movement.x < self.maxSpeed then
+  if keys.right and self.movement.x < self.maxSpeed then
     self.movement.x = self.movement.x + self.acceleration
   end
-  if love.keyboard.isDown("s") and self.movement.y < self.maxSpeed then
+  if keys.down and self.movement.y < self.maxSpeed then
     self.movement.y = self.movement.y + self.acceleration
   end
-  if love.keyboard.isDown("a") and self.movement.x > -self.maxSpeed then
+  if keys.left and self.movement.x > -self.maxSpeed then
     self.movement.x = self.movement.x - self.acceleration
   end
-  if love.keyboard.isDown("w") and self.movement.y > -self.maxSpeed then
+  if keys.up and self.movement.y > -self.maxSpeed then
     self.movement.y = self.movement.y - self.acceleration
   end
 
