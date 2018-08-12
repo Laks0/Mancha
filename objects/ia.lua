@@ -15,6 +15,9 @@ function ia:set()
   self.stoneTimer = 0
   self.sprint = false
   self.sprintTimer = 0
+
+  self.witing = false
+  self.waitTime = 0
 end
 
 function ia:update(dt)
@@ -69,7 +72,7 @@ function ia:update(dt)
     self.movement.y = 0
   end
 
-  if not self.stone then
+  if not self.stone and not self.waiting then
     local toMoveX = self.x + self.movement.x * dt
     if toMoveX - self.rad > field.x and  toMoveX + self.rad < field.x + field.w then
       self.x = toMoveX
@@ -78,13 +81,18 @@ function ia:update(dt)
     if toMoveY - self.rad > field.y and  toMoveY + self.rad < field.y + field.h then
       self.y = toMoveY
     end
-  else
+  elseif self.stone then
     self.stoneTimer = self.stoneTimer - dt
     if self.stoneTimer <= 0 then
       self.stone = false
     end
+  else
+    self.waitTime = self.waitTime - dt
+    if self.waitTime <= 0 then
+      self.waiting = false
+    end
   end
-  
+
   if self.x + 16 > field.x + field.w then self.x = field.x + field.w - 16 end
   if self.y + 16 > field.y + field.h then self.y = field.y + field.h - 16 end
   if self.x - 16 < field.x then self.x = field.x + 16 end
@@ -94,6 +102,11 @@ end
 function ia:show()
   render:circle("fill",self.x,self.y,16,2,{1,.5,0})
   if self.it then
-    render:circle("line",self.x,self.y,16,2,{0,0,0},3)
+    render:circle("line",self.x,self.y,16,2,{0,0,0},5)
   end
+end
+
+function ia:wait(t)
+  self.waiting = true
+  self.waitTime = t
 end

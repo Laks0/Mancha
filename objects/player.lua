@@ -20,11 +20,19 @@ end
 function player:update(dt)
   joysticks = love.joystick.getJoysticks()
   keys = {
-    left = love.keyboard.isDown("a") or joysticks[1]:getAxis(1) < -.5,
-    right = love.keyboard.isDown("d") or joysticks[1]:getAxis(1) > .5,
-    up = love.keyboard.isDown("w") or joysticks[1]:getAxis(2) < -.5,
-    down = love.keyboard.isDown("s") or joysticks[1]:getAxis(2) > .5,
+    left = love.keyboard.isDown("a") or love.keyboard.isDown("left"),
+    right = love.keyboard.isDown("d") or love.keyboard.isDown("right"),
+    up = love.keyboard.isDown("w") or love.keyboard.isDown("up"),
+    down = love.keyboard.isDown("s") or love.keyboard.isDown("down"),
   }
+  if joysticks[1] then
+    keys = {
+      left = left or joysticks[1]:getAxis(1) < -.5,
+      right = right or joysticks[1]:getAxis(1) > .5,
+      up = up or joysticks[1]:getAxis(2) < -.5,
+      down = down  or joysticks[1]:getAxis(2) > .5
+    }
+  end
 
   if self.sprint then
     self.maxSpeed = 600
@@ -88,6 +96,6 @@ end
 function player:show()
   render:circle("fill",self.x,self.y,16,2,{0,0,.8})
   if self.it then
-    render:circle("line",self.x,self.y,16,2,{0,0,0},3)
+    render:circle("line",self.x,self.y,16,2,{0,0,0},5)
   end
 end

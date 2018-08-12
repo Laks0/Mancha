@@ -20,6 +20,8 @@ function game_load()
     table.remove(powerUps,1)
   end
 
+  ia:wait(.5)
+
   bgm:play()
 end
 
@@ -48,6 +50,10 @@ function game_update(dt)
     player.movement.x = 500 * sign(player.x-ia.x)
     ia.movement.y = 500 * sign(ia.y-player.y)
     player.movement.y = 500 * sign(player.y-ia.y)
+
+    if ia.it then
+      ia:wait(.2)
+    end
 
     tagSound:play()
   end

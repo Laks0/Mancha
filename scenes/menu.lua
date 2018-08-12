@@ -92,23 +92,21 @@ function menu_draw()
     render:textf("Mancha!",0,15,"center",width,3,{.4,.1,0},bebas128)
     render:textf("The classic game of Tag",0,bebas128Line-10,"center",width,3,{.4,.1,0})
 
-    render:text("You are the blue guy",20,defLine*10,2,{.4,.1,0})
-    render:circle("fill",defaultFont:getWidth("You are the blue guy")+52,defLine*10.8,16,2,{0,0,.8})
+    render:text("You are the blue circle",20,defLine*10,2,{.4,.1,0})
+    render:circle("fill",defaultFont:getWidth("You are the blue circle")+52,defLine*10.8,16,2,{0,0,.8})
 
-    render:text("Who has the black rign is it",20,defLine*12,2,{.4,.1,0})
-    render:circle("line",defaultFont:getWidth("Who has the black rign is it")+52,defLine*12.8,16,2,{0,0,0},3)
+    render:text("Whoever has the black ring is it",20,defLine*12,2,{.4,.1,0})
+    render:circle("line",defaultFont:getWidth("Whoever has the black ring is it")+52,defLine*12.8,16,2,{0,0,0},5)
 
-    render:text("These are power ups",20,defLine*14,2,{.4,.1,0})
-    render:circle("fill",defaultFont:getWidth("These are power ups")+52,defLine*14.8,16,2,{.2,.2,.2})
-    render:circle("fill",defaultFont:getWidth("These are power ups")+52+40,defLine*14.8,16,2,{1,0,0})
-    render:text({{.4,.1,0},"The",{.2,.2,.2}, " grey ", {.4,.1,0}, "one stones the other player for a while and the", {1,0,0}, " red ", {.4,.1,0}, "one gives you a speed boost"},
-    defaultFont:getWidth("These are power ups")+115,defLine*14,2)
+    render:text("These are the power ups, both you and the AI can pick them up",20,defLine*14.8,2,{.4,.1,0})
+    render:circle("fill",36,defLine*17.8,16,2,{.2,.2,.2})
+    render:text("Stuns the other player",62,defLine*17,2,{.4,.1,0})
+    render:circle("fill",36,defLine*19.8,16,2,{1,0,0})
+    render:text({{.4,.1,0},"Speed boost"},62,defLine*19,2)
 
-    render:text("Use WASD to move or the left stick of a joystick",20,defLine*16,2,{.4,.1,0})
+    render:text("Use WASD to move of the left stick of a joystick",20,defLine*21.8,2,{.4,.1,0})
 
-    render:text("Try to tag the AI and don't let it tag you until the time's up",20,defLine*18,2,{.4,.1,0})
-
-    render:text("Good luck!",20,defLine*20,2,{.4,.1,0})
+    render:text("Tag the AI and don't let it tag you",20,defLine*23.8,2,{.4,.1,0})
 
     render:rectangle("line",width/2-100,height/2-defLine/2+300,200,defLine+20,2,{0,0,0},10)
     render:rectangle("fill",width/2-100,height/2-defLine/2+300,200,defLine+20,1,{0,.6,0})
