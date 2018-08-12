@@ -1,3 +1,8 @@
+--[[
+As the ancient legend says "a good code doesn't need comments", so this is my
+gift to you, the perfect code, enjoy.
+]]
+
 require "tools/render"
 
 require "scenes/game"

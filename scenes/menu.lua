@@ -104,7 +104,7 @@ function menu_draw()
     render:circle("fill",36,defLine*19.8,16,2,{1,0,0})
     render:text({{.4,.1,0},"Speed boost"},62,defLine*19,2)
 
-    render:text("Use WASD to move of the left stick of a joystick",20,defLine*21.8,2,{.4,.1,0})
+    render:text("Use WASD, arrow keys or a joystick to move",20,defLine*21.8,2,{.4,.1,0})
 
     render:text("Tag the AI and don't let it tag you",20,defLine*23.8,2,{.4,.1,0})
 
